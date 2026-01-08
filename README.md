@@ -63,6 +63,16 @@ uv sync
 ```
 
 ### 3. Запуск сервера:
+#### Активируем виртуальное окружение:
+1.1 Windows:
+```bash
+backend/.venv/bin/activate
+```
+1.2 Linux:
+```bash
+source backend/.venv/bin/activate
+```
+#### Запускаем:
 ```bash
 uv run python -m backend
 ```

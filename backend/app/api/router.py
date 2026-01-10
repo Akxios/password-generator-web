@@ -1,7 +1,7 @@
 from fastapi import APIRouter
-from backend.src.services.entropy import password_strength_report
-from backend.src.services.generate import generate_cryptographic_password
-from backend.src.schemas.password import (
+from backend.app.services.entropy import password_strength_report
+from backend.app.services.generate import generate_cryptographic_password
+from backend.app.schemas.password import (
     PasswordGenerateRequest,
     PasswordCheckRequest,
     PasswordGenerateResponse,

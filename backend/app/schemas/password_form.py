@@ -1,6 +1,6 @@
-from pydantic import BaseModel, Field, model_validator
 from fastapi import Form
-from backend.src.schemas.password import PasswordGenerateRequest
+from pydantic import BaseModel, Field, model_validator
+from backend.app.schemas.password import PasswordGenerateRequest
 
 
 class PasswordGenerateForm(PasswordGenerateRequest):

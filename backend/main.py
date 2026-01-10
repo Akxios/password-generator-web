@@ -11,8 +11,9 @@ from backend.config import (
     MIN_PASSWORD_LENGTH,
     MAX_PASSWORD_LENGTH
 )
-from backend.src.web.router import router as web_router 
-from backend.src.api.router import router as api_router
+from backend.app.web.router import router as web_router 
+from backend.app.api.router import router as api_router
+
 
 templates = Jinja2Templates(directory="frontend/templates")
 app = FastAPI(title="Password Generator API", description="API для генерации и проверки пароля")

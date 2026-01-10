@@ -193,7 +193,7 @@ wheels = [
 
 [[package]]
 name = "password-generator-web"
-version = "1.0.0"
+version = "1.0.2"
 source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },

@@ -3,10 +3,10 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 
-from backend.src.services.generate import generate_cryptographic_password
-from backend.src.services.entropy import password_strength_report
-from backend.src.schemas.password import PasswordGenerateRequest
-from backend.src.schemas.password_form import PasswordGenerateForm
+from backend.app.services.generate import generate_cryptographic_password
+from backend.app.services.entropy import password_strength_report
+from backend.app.schemas.password import PasswordGenerateRequest
+from backend.app.schemas.password_form import PasswordGenerateForm
 
 templates = Jinja2Templates(directory="frontend/templates")
 router = APIRouter()

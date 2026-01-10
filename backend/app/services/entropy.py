@@ -2,7 +2,7 @@ import math
 import string
 from collections import Counter
 
-from backend.src.services.config import KEYBOARD_SEQS, COMMON_PASSWORDS
+from backend.app.services.config import KEYBOARD_SEQS, COMMON_PASSWORDS
 from backend.config import ENTROPY_COEFS
 
 

@@ -91,7 +91,6 @@ def password_strength_report(password: str) -> float:
             entropy *= rule["factor"]
             break  # применяем только первый подходящий диапазон
 
-
     # Повторы
     unique_ratio = len(set(password)) / length
     entropy *= unique_ratio ** ENTROPY_COEFS["unique_ratio"]

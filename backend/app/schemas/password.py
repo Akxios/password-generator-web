@@ -1,4 +1,3 @@
-from fastapi import Form
 from pydantic import BaseModel, Field, model_validator
 from backend.config import MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_LENGTH
 

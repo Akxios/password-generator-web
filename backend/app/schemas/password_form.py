@@ -1,5 +1,3 @@
-from fastapi import Form
-from pydantic import BaseModel, Field, model_validator
 from backend.app.schemas.password import PasswordGenerateRequest
 
 

@@ -4,14 +4,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from pathlib import Path
-
-from backend.config import (
-    DEFAULT_PASSWORD_LENGTH,
-    MIN_PASSWORD_LENGTH,
-    MAX_PASSWORD_LENGTH
-)
-from backend.app.web.router import router as web_router 
+from backend.app.web.router import router as web_router
 from backend.app.api.router import router as api_router
 
 

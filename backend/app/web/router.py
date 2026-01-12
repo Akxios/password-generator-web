@@ -5,7 +5,6 @@ from pydantic import ValidationError
 
 from backend.app.services.generate import generate_cryptographic_password
 from backend.app.services.entropy import password_strength_report
-from backend.app.schemas.password import PasswordGenerateRequest
 from backend.app.schemas.password_form import PasswordGenerateForm
 
 templates = Jinja2Templates(directory="frontend/templates")

@@ -7,7 +7,7 @@ def generate_cryptographic_password(
     use_lower: bool = True,
     use_upper: bool = True,
     use_digits: bool = True,
-    use_special: bool = True
+    use_special: bool = True,
 ) -> str:
     """
     Генерирует криптографически стойкий пароль.
@@ -33,10 +33,10 @@ def generate_cryptographic_password(
         raise ValueError("Длина пароля меньше количества выбранных типов символов")
 
     password = [secrets.choice(pool) for pool in pools]
-    all_chars = ''.join(pools)
+    all_chars = "".join(pools)
 
     password += [secrets.choice(all_chars) for _ in range(length - len(password))]
 
     secrets.SystemRandom().shuffle(password)
 
-    return ''.join(password)
+    return "".join(password)

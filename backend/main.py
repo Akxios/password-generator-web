@@ -1,27 +1,20 @@
-from fastapi import FastAPI, HTTPException, Request, Form
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from backend.app.web.router import router as web_router
 from backend.app.api.router import router as api_router
-
+from backend.app.web.router import router as web_router
 
 templates = Jinja2Templates(directory="frontend/templates")
-app = FastAPI(title="Password Generator API", description="API для генерации и проверки пароля")
-
-app.mount(
-    "/static",
-    StaticFiles(directory="frontend/static"),
-    name="static"
+app = FastAPI(
+    title="Password Generator API", description="API для генерации и проверки пароля"
 )
 
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000"
-]
+app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+
+origins = ["http://localhost", "http://localhost:8000", "http://127.0.0.1:8000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,10 +28,11 @@ app.include_router(web_router)
 app.include_router(api_router)
 
 
-@app.get("/",
+@app.get(
+    "/",
     response_class=HTMLResponse,
     summary="Главная страница",
-    description="Возвращается главную страницу"    
+    description="Возвращается главную страницу",
 )
 def index(request: Request):
     return templates.TemplateResponse(

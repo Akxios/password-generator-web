@@ -6,8 +6,15 @@ KEYBOARD_SEQS = [
     "1234567890",
 ]
 
+
 # Часто используемые пароли
 COMMON_PASSWORDS = {
-    "password", "qwerty", "123456", "12345678",
-    "admin", "letmein", "welcome", "iloveyou"
+    "password",
+    "qwerty",
+    "123456",
+    "12345678",
+    "admin",
+    "letmein",
+    "welcome",
+    "iloveyou",
 }

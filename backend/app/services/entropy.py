@@ -2,7 +2,7 @@ import math
 import string
 from collections import Counter
 
-from backend.app.services.config import KEYBOARD_SEQS, COMMON_PASSWORDS
+from backend.app.services.config import COMMON_PASSWORDS, KEYBOARD_SEQS
 from backend.config import ENTROPY_COEFS
 
 
@@ -72,7 +72,7 @@ def alphabet_size(password: str) -> int:
     return size
 
 
-def password_strength_report(password: str) -> float:
+def password_strength_report(password: str) -> dict[str, object]:
     """Возвращает подробный отчёт о пароле с энтропией и паттернами"""
     length = len(password)
 
@@ -97,7 +97,7 @@ def password_strength_report(password: str) -> float:
 
     # Повторяющиеся паттерны
     rep_ratio = repeated_substring_ratio(password)
-    entropy *= (1 - rep_ratio)
+    entropy *= 1 - rep_ratio
 
     # ASCII последовательности
     ascii_len = ascii_sequence_len(password)
@@ -129,5 +129,5 @@ def password_strength_report(password: str) -> float:
         "ascii_sequence": ascii_len,
         "keyboard_sequence": key_len,
         "digits_only": is_digits_only,
-        "in_dictionary": in_dictionary
+        "in_dictionary": in_dictionary,
     }

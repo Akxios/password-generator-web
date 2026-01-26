@@ -1,22 +1,22 @@
 from fastapi import APIRouter
+
+from backend.app.schemas.password import (
+    PasswordCheckRequest,
+    PasswordCheckResponse,
+    PasswordGenerateRequest,
+    PasswordGenerateResponse,
+)
 from backend.app.services.entropy import password_strength_report
 from backend.app.services.generate import generate_cryptographic_password
-from backend.app.schemas.password import (
-    PasswordGenerateRequest,
-    PasswordCheckRequest,
-    PasswordGenerateResponse,
-    PasswordCheckResponse
-)
 
-router = APIRouter(
-    prefix="/api"
-)
+router = APIRouter(prefix="/api")
 
 
-@router.post("/generate",
+@router.post(
+    "/generate",
     response_model=PasswordGenerateResponse,
     summary="Генерация пароля",
-    description="Генерирует криптографически стойкий пароль и считает энтропию"
+    description="Генерирует криптографически стойкий пароль и считает энтропию",
 )
 async def api_password_generate(data: PasswordGenerateRequest):
     password = generate_cryptographic_password(
@@ -24,7 +24,7 @@ async def api_password_generate(data: PasswordGenerateRequest):
         use_lower=data.use_lower,
         use_upper=data.use_upper,
         use_digits=data.use_digits,
-        use_special=data.use_special
+        use_special=data.use_special,
     )
 
     report = password_strength_report(password)
@@ -33,10 +33,11 @@ async def api_password_generate(data: PasswordGenerateRequest):
     return report
 
 
-@router.post("/check",
+@router.post(
+    "/check",
     response_model=PasswordCheckResponse,
     summary="Проверка пароля",
-    description="Считает энтропию пароля"
+    description="Считает энтропию пароля",
 )
 async def api_password_check(data: PasswordCheckRequest):
     password = data.password

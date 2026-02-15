@@ -4,15 +4,15 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from backend.app.api.router import router as api_router
-from backend.app.web.router import router as web_router
+from app.api.router import router as api_router
+from app.web.router import router as web_router
 
-templates = Jinja2Templates(directory="frontend/templates")
+templates = Jinja2Templates(directory="app/web/templates")
 app = FastAPI(
     title="Password Generator API", description="API для генерации и проверки пароля"
 )
 
-app.mount("/static", StaticFiles(directory="frontend/static"), name="static")
+app.mount("/static", StaticFiles(directory="app/web/static"), name="static")
 
 origins = ["http://localhost", "http://localhost:8000", "http://127.0.0.1:8000"]
 

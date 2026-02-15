@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Password Generator</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+    </head>
+    <body>
+        <div class="card">
+            <h2>🔐 Password Generator</h2>
+            <p class="subtitle">Generate secure passwords & check entropy</p>
+
+            <form method="post">
+                <div class="field">
+                    <label>Length</label>
+                    <input
+                        type="number"
+                        name="length"
+                        value="{{ length or 12 }}"
+                    />
+                </div>
+
+                <div class="checkboxes">
+                    <label
+                        ><input
+                            type="checkbox"
+                            name="use_lower"
+                            {%
+                            if
+                            use_lower
+                            %}checked{%
+                            endif
+                            %}
+                        />
+                        Lowercase</label
+                    >
+                    <label
+                        ><input
+                            type="checkbox"
+                            name="use_upper"
+                            {%
+                            if
+                            use_upper
+                            %}checked{%
+                            endif
+                            %}
+                        />
+                        Uppercase</label
+                    >
+                    <label
+                        ><input
+                            type="checkbox"
+                            name="use_digits"
+                            {%
+                            if
+                            use_digits
+                            %}checked{%
+                            endif
+                            %}
+                        />
+                        Digits</label
+                    >
+                    <label
+                        ><input
+                            type="checkbox"
+                            name="use_special"
+                            {%
+                            if
+                            use_special
+                            %}checked{%
+                            endif
+                            %}
+                        />
+                        Symbols</label
+                    >
+                </div>
+
+                <button type="submit">Generate</button>
+            </form>
+
+            {% if password %}
+            <div class="result success">
+                <div class="password-row">
+                    <span id="password">{{ password }}</span>
+                    <button type="button" onclick="copyPassword()" title="Copy">
+                        📋
+                    </button>
+                </div>
+                <div class="analysis">
+                    <div class="score-header">
+                        <span class="score-label">Security Score:</span>
+                        <b class="score-value score-{{ score }}"
+                            >{{ score }}/4</b
+                        >
+                    </div>
+
+                    <div class="crack-times-table">
+                        <p class="table-title">Time to crack scenario:</p>
+                        <table>
+                            <tr>
+                                <td>🌐 Online (Throttled)</td>
+                                <td class="time">
+                                    {{
+                                    crack_times_display.online_throttling_100_per_hour
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>🌐 Online (No Limit)</td>
+                                <td class="time">
+                                    {{
+                                    crack_times_display.online_no_throttling_10_per_second
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>💻 Offline (Bcrypt/Slow)</td>
+                                <td class="time">
+                                    {{
+                                    crack_times_display.offline_slow_hashing_1e4_per_second
+                                    }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>🚀 Offline (MD5/Fast)</td>
+                                <td class="time warning-text">
+                                    {{
+                                    crack_times_display.offline_fast_hashing_1e10_per_second
+                                    }}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <p style="margin-top: 10px; font-size: 0.8em; color: #777">
+                        Guesses: 10<sup>{{ "%.0f"|format(guesses_log) }}</sup>
+                    </p>
+
+                    {% if warning %}
+                    <p class="warning">⚠️ {{ warning }}</p>
+                    {% endif %} {% if suggestions %}
+                    <ul class="suggestions">
+                        {% for tip in suggestions %}
+                        <li>💡 {{ tip }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %} {% if errors %}
+            <div class="result error">
+                {% for e in errors %}
+                <p>⚠️ {{ e }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <script src="/static/js/script.js"></script>
+    </body>
+</html>

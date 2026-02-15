@@ -1,4 +1,4 @@
-from backend.app.schemas.password import PasswordGenerateRequest
+from app.schemas.password import PasswordGenerateRequest
 
 
 class PasswordGenerateForm(PasswordGenerateRequest):
